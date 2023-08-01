@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:eventsourcingdemo;DB_CLOSE_ON_EXIT=false;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 3
+      leak-detection-threshold: 2000
+  jpa:
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] [%-25logger{0}]- %msg%n"
+  level:
+    '[com.zaxxer.hikari]': trace
+    '[com.zaxxer.hikari.HikariConfig]': debug
