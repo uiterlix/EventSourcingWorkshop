@@ -58,13 +58,13 @@ public class DBJournal implements Journal {
     }
 
     @Transactional
-    public void doAppendEvents(AggregateType aggregateType, String aggregateId, Long aggregateVersion, List<Event> events) {
+    public void doAppendEvents(AggregateType aggregateType, String aggregateId, Long expectedVersion, List<Event> events) {
         long lastSequence = getLastAggregateSequence(aggregateType, aggregateId);
-        if (lastSequence > aggregateVersion) {
+        if (lastSequence > expectedVersion) {
             throw new RuntimeException("Aggregate version mismatch");
         }
 
-        long eventSeq = aggregateVersion;
+        long eventSeq = expectedVersion + 1;
         for (Event event : events) {
             final long aggregateInstanceSeq = eventSeq;
             EventType eventType = event.getEventType();

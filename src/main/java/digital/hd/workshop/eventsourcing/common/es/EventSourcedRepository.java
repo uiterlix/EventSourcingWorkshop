@@ -16,8 +16,8 @@ public class EventSourcedRepository {
     }
 
     public <T extends EventSourcedAggregateRoot> void save(T aggregate) {
-        long aggregateVersion = aggregate.getVersion() - aggregate.getPendingEvents().size() + 1;
-        journal.appendEvents(aggregate.getAggregateType(), aggregate.getAggregateId(), aggregateVersion, aggregate.getPendingEvents());
+        long expectedVersion = aggregate.getVersion() - aggregate.getPendingEvents().size();
+        journal.appendEvents(aggregate.getAggregateType(), aggregate.getAggregateId(), expectedVersion, aggregate.getPendingEvents());
     }
 
     @SneakyThrows
