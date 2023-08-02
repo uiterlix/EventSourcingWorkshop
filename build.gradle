@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.1'
+    id 'application'
 }
 
 group 'digital.hd.workshop.eventsourcing'
@@ -9,6 +10,10 @@ version '1.0-SNAPSHOT'
 java {
     sourceCompatibility = 17
     targetCompatibility = 17
+}
+
+application {
+    mainClass = 'digital.hd.workshop.eventsourcing.Application'
 }
 
 repositories {

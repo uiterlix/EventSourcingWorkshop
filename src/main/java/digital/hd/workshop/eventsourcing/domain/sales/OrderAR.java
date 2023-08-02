@@ -74,6 +74,9 @@ public class OrderAR extends EventSourcedAggregateRoot {
         if (status.equals(OrderStatus.CONFIRMED)) {
             throw new OrderException("Order already confirmed");
         }
+        if (status.equals(OrderStatus.CANCELLED)) {
+            throw new OrderException("A cancelled order cannot be confirmed");
+        }
         if (items.size() == 0) {
             throw new OrderException("Order has no items");
         }
@@ -85,6 +88,9 @@ public class OrderAR extends EventSourcedAggregateRoot {
     }
 
     public void cancelOrder(InvocationContext context) {
+        if (status.equals(OrderStatus.CANCELLED)) {
+            throw new OrderException("Order already cancelled");
+        }
         applyChange(OrderCancelled.builder()
                 .aggregateId(aggregateId)
                 .when(Instant.now())

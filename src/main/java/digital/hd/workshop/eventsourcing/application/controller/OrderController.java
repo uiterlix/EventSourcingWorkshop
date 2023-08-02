@@ -1,32 +1,42 @@
 package digital.hd.workshop.eventsourcing.application.controller;
 
-import digital.hd.workshop.eventsourcing.common.es.EventSourcedRepository;
-import digital.hd.workshop.eventsourcing.common.es.InvocationContext;
-import digital.hd.workshop.eventsourcing.domain.sales.OrderAR;
+import digital.hd.workshop.eventsourcing.domain.sales.OrderCommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
 
-    private final EventSourcedRepository repository;
+    private final OrderCommandHandler commandHandler;
 
-    public OrderController(@Autowired EventSourcedRepository repository) {
-        this.repository = repository;
+    public OrderController(@Autowired OrderCommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
     }
 
-    @PostMapping("create/{id}")
+    @PostMapping("{id}")
     public void createOrder(@PathVariable("id") String id,
-                            @RequestParam String tableNumber) {
-        InvocationContext context = new InvocationContext("System");
-        OrderAR order = new OrderAR(id);
-        order.createOrder(context, tableNumber);
-        repository.save(order);
+                            @RequestBody OrderDetails orderDetails) {
+        commandHandler.createOrder("web-user", id, orderDetails.getTableNumber());
     }
 
+    @PostMapping("{id}/add-item")
+    public void addItemToOrder(@PathVariable("id") String id,
+                               @RequestBody LineItemDetails orderItem) {
+        commandHandler.addItemToOrder("web-user", id, orderItem.getProductId(), orderItem.getQuantity());
+    }
+
+    @PostMapping("{id}/confirm")
+    public void confirmOrder(@PathVariable("id") String id) {
+        commandHandler.confirmOrder("web-user", id);
+    }
+
+    @PostMapping("{id}/cancel")
+    public void cancelOrder(@PathVariable("id") String id) {
+        commandHandler.cancelOrder("web-user", id);
+    }
 }
