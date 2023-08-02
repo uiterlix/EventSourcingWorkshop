@@ -3,8 +3,13 @@ plugins {
     id 'org.springframework.boot' version '3.1.1'
 }
 
-group 'hd.digital.workshop.eventsourcing'
+group 'digital.hd.workshop.eventsourcing'
 version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
 
 repositories {
     mavenCentral()
