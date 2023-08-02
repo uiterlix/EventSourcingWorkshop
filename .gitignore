@@ -16,9 +16,6 @@ dist/
 # Log files
 *.log
 
-# Package files
-*.jar
-
 # Maven
 target/
 
@@ -47,5 +44,5 @@ Thumbs.db
 *.mov
 *.wmv
 
-.gradle
+.gradle/
 build/
