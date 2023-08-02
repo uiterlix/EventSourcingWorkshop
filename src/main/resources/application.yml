@@ -13,7 +13,7 @@ spring:
     console:
       enabled: true
       path: /h2-console
-
+server.port: 8123
 logging:
   pattern:
     console: "[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] [%-25logger{0}]- %msg%n"

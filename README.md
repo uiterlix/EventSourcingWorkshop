@@ -16,5 +16,5 @@
 
 ## Inspecting the database
 
-The project is setup to use an in memory H2 database. To inspect the database, open the H2 console at http://localhost:8080/h2-console. 
+The project is setup to use an in memory H2 database. To inspect the database, open the H2 console at http://localhost:8123/h2-console. 
 The JDBC URL is `jdbc:h2:mem:eventsourcingdemo` and the username is `sa` with no password.
