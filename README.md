@@ -18,3 +18,7 @@
 
 The project is setup to use an in memory H2 database. To inspect the database, open the H2 console at http://localhost:8123/h2-console. 
 The JDBC URL is `jdbc:h2:mem:eventsourcingdemo` and the username is `sa` with no password.
+
+## Performing REST calls
+
+Import the postman collection in the `postman` folder. This contains a number of requests to perform REST calls to the application.
