@@ -1,121 +1,193 @@
 {
 	"info": {
-		"_postman_id": "c04ac115-6ed1-4130-8ff9-73b7485ca31d",
+		"_postman_id": "8c93e344-f555-48c7-a497-f3123eb0a9b6",
 		"name": "EventSourcingWorkshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26738523"
 	},
 	"item": [
 		{
-			"name": "Create order",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+			"name": "view",
+			"item": [
+				{
+					"name": "List orders (overview)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8123/order-view",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order-view"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8123/order/100",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8123",
-					"path": [
-						"order",
-						"100"
-					]
+				{
+					"name": "Replay order overview view",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8123/order-view/replay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order-view",
+								"replay"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Add line item",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"productId\" : \"cake\",\n    \"quantity\" : 3\n}"
+			"name": "commands",
+			"item": [
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8123/order/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order",
+								"100"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8123/order/100/add-item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8123",
-					"path": [
-						"order",
-						"100",
-						"add-item"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Confirm order",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+				{
+					"name": "Add line item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\" : \"cake\",\n    \"quantity\" : 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8123/order/100/add-item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order",
+								"100",
+								"add-item"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8123/order/100/confirm",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8123",
-					"path": [
-						"order",
-						"100",
-						"confirm"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cancel order",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+				{
+					"name": "Confirm order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8123/order/100/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order",
+								"100",
+								"confirm"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8123/order/100/cancel",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8123",
-					"path": [
-						"order",
-						"100",
-						"cancel"
-					]
+				{
+					"name": "Cancel order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8123/order/100/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8123",
+							"path": [
+								"order",
+								"100",
+								"cancel"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }

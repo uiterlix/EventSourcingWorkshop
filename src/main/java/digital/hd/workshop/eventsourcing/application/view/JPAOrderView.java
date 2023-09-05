@@ -72,4 +72,9 @@ public class JPAOrderView extends View {
                 .orderStatus("CANCELLED")
                 .build());
     }
+
+    @Override
+    protected void truncate() {
+        orderRepository.deleteAll();
+    }
 }

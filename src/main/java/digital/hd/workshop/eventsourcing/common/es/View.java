@@ -22,7 +22,10 @@ public abstract class View {
 
     protected abstract Collection<AggregateType> getAggregateTypes();
 
+    protected abstract void truncate();
+
     public void replay() {
+        truncate();
         try (Stream<ProjectionEvent> stream = journal.loadEvents(getAggregateTypes(), 0L)) {
             stream.forEach(this::handleEvent);
         }

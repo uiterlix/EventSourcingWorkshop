@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -59,5 +60,18 @@ public class JDBCOrderView extends View {
         jdbcTemplate.update("UPDATE ORDER_OVERVIEW SET ORDER_STATUS = ? WHERE ORDER_ID = ?",
                 "CANCELLED",
                 event.getAggregateId());
+    }
+
+    public List<OrderOverviewData> getOrders() {
+        return jdbcTemplate.query("SELECT * FROM ORDER_OVERVIEW", (rs, rowNum) -> OrderOverviewData.builder()
+                .orderId(rs.getString("ORDER_ID"))
+                .itemCount(rs.getLong("ITEM_COUNT"))
+                .orderStatus(rs.getString("ORDER_STATUS"))
+                .build());
+    }
+
+    @Override
+    protected void truncate() {
+        jdbcTemplate.update("TRUNCATE TABLE ORDER_OVERVIEW");
     }
 }
