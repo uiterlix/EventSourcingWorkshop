@@ -18,6 +18,10 @@ import java.util.Map;
 
 public class OrderAR extends EventSourcedAggregateRoot {
 
+    /*
+     * This is the aggregate type definition. It is used by the event sourcing framework to persist and retrieve
+     * the events for the aggregate.
+     */
     public static final AggregateType AGGREGATE_TYPE = AggregateType.builder()
             .identifier("Order")
             .eventTypes(Map.of(
@@ -27,12 +31,19 @@ public class OrderAR extends EventSourcedAggregateRoot {
                     OrderCancelled.EVENT_TYPE, OrderCancelled.class))
             .build();
 
+    /*
+     *  This is the aggregate state. It is computed by applying all events to the aggregate.
+     */
     private OrderStatus status;
     private final List<OrderItem> items = new ArrayList<>();
 
     public OrderAR(String aggregateId) {
         super(aggregateId);
     }
+
+    /*
+     * The handle(xx) methods apply events to the aggregate and modify the aggregate state.
+     */
 
     void handle(OrderCreated event) {
         this.status = OrderStatus.CREATED;
@@ -50,6 +61,11 @@ public class OrderAR extends EventSourcedAggregateRoot {
     void handle(OrderCancelled event) {
         this.status = OrderStatus.CANCELLED;
     }
+
+    /*
+     * Below are the business methods that change the state of the aggregate by generating events.
+     * Before generating an event the invariants are checked.
+     */
 
     public void createOrder(InvocationContext context, String tableNumber) {
         applyChange(OrderCreated.builder()

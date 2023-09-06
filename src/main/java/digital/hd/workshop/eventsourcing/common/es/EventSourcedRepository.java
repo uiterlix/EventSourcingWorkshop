@@ -26,6 +26,9 @@ public class EventSourcedRepository {
         try (Stream<Event> events = journal.loadEvents(aggregate.getAggregateType(), aggregateId)) {
             aggregate.reconstituteFromEvents(events);
         }
+        if (aggregate.getVersion() == 0) {
+            throw new AggregateNotFoundException(aggregateId);
+        }
         return aggregate;
     }
 }

@@ -7,15 +7,15 @@ base classes are located in the `digital.hd.workshop.eventsourcing.common.es` pa
 A sample implementation of an Order aggregate is located in the `digital.hd.workshop.eventsourcing.domain.sales` package.
 It holds an Order aggregate in `OrderAR.java`.
 The main responsibility of the aggregate is to keep the aggregate consistent. 
-It provides business methods to change the state of the aggregate. In order to check consistency aggregate keeps state.
+It provides business methods that change the state of the aggregate. In order to check consistency aggregate keeps state.
 The state of the aggregate is computed by replaying events on the aggregate every time a new event is applied.
 
 Aggregates are stored and retrieved from a repository, see `EventSourcedRepository.java`.
 
 A command handler is responsible for handling commands and applying events to aggregates. See `OrderCommandHandler.java`.
 
-A view is a projection of the state of an aggregate. See `JDBCOrderView.java`. It subscribes to events and updates a
-materialized view.
+A view is a projection of the state of an aggregate. See `JDBCOrderView.java` as an example. It subscribes to events and updates a
+materialized view. To illustrate you can create different views using different persistence mechanisms, there is also a `JPAOrderView.java`
 
 ## Assignment 1: Getting started 
 
