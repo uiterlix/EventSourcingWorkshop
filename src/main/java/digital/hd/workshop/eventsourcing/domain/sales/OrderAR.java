@@ -61,6 +61,9 @@ public class OrderAR extends EventSourcedAggregateRoot {
     }
 
     public void addLineItem(InvocationContext context, String productId, int quantity) {
+        if (status == null) {
+            throw new OrderException("Order must be created first.");
+        }
         applyChange(OrderItemAdded.builder()
                 .aggregateId(aggregateId)
                 .when(Instant.now())
@@ -71,6 +74,9 @@ public class OrderAR extends EventSourcedAggregateRoot {
     }
 
     public void confirmOrder(InvocationContext context) {
+        if (status == null) {
+            throw new OrderException("Order must be created first.");
+        }
         if (status.equals(OrderStatus.CONFIRMED)) {
             throw new OrderException("Order already confirmed");
         }
@@ -88,6 +94,9 @@ public class OrderAR extends EventSourcedAggregateRoot {
     }
 
     public void cancelOrder(InvocationContext context) {
+        if (status == null) {
+            throw new OrderException("Order must be created first.");
+        }
         if (status.equals(OrderStatus.CANCELLED)) {
             throw new OrderException("Order already cancelled");
         }
