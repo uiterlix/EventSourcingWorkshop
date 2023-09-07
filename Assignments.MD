@@ -14,7 +14,7 @@ A **_command handler_** validates an incoming command and rejects or processes i
 
 A **_repository_** stores aggregates, typically in a database.
 
-With event sourcing aggregates are stored by storing their sequence of events.
+With event sourcing aggregates are stored (appending to) by storing their sequence of events.
 
 **_View models_** (aka Projections) provide a way to convert a stream of events into a structural representation, i.e. the current state.
 
