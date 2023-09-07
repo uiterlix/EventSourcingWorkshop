@@ -43,7 +43,8 @@ materialized view. To illustrate you can create different views using different 
 
 ## Assignment 1: Getting started 
 
-Run the application, inspect the h2 database and try the REST calls provided with the postman collection.
+Run the application, inspect the h2 database (the URL to access the database can be found in
+[README.md](/#inspecting-the-database)) and try the REST calls provided with the postman collection.
 
 ## Assignment 2: Replay the JDBCOrderView
 
