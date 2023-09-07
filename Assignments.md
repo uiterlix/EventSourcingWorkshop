@@ -37,8 +37,8 @@ A REST controller is provided that handles the commands. See `OrderController.ja
 The controller uses the command handler to handle the commands.
 
 A view is a projection of the state of an aggregate. See `JDBCOrderView.java` as an example. It subscribes to events and updates a
-materialized view. To illustrate you can create different views using different persistence mechanisms, there is also a `JPAOrderView.java`
-
+materialized view. To illustrate you can create different views using different persistence mechanisms, there is also a `JPAOrderView.java`.
+In the assignments below you only need to change the JDBC views. However, you are free to change the JPA views as well.
 
 
 ## Assignment 1: Getting started 
