@@ -68,6 +68,8 @@ If you now call the `view/List orders (overview)` method using Postman, you shou
 Extend classes related to the event that adds order items with a price.
 The Java type of a price should be a `BigDecimal` and should be stored in the event.
 
+You can validate your code by performing Postman requests and inspecting column `EVENT_DATA` in table `JOURNAL`.
+
 ## Assignment 4: Update the JDBCOrderView
 
 Now we've added prices to the order items, we want to include the total price of the order in the view.
