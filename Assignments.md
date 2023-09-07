@@ -70,7 +70,7 @@ The Java type of a price should be a `BigDecimal` and should be stored in the ev
 
 ## Assignment 4: Update the JDBCOrderView
 
-Now we've added the price to the order, we want to include the total price of the order in the view.
+Now we've added prices to the order items, we want to include the total price of the order in the view.
 Update the `JDBCOrderView` logic that handles the OrderItemAdded event and include the total price of the order.
 Please note the database creation script in `src/main/resources/schema.sql` that creates the `ORDER_OVERVIEW` table.
 
