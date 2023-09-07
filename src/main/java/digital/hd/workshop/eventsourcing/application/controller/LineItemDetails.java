@@ -1,16 +1,5 @@
 package digital.hd.workshop.eventsourcing.application.controller;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+public record LineItemDetails(String productId, int quantity) {
 
-@Data
-@Getter
-@Setter
-@NoArgsConstructor
-public class LineItemDetails {
-
-    private String productId;
-    private int quantity;
 }
