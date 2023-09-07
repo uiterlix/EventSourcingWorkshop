@@ -55,7 +55,7 @@ view.
 
 Let's try this by corrupting our database table first and then replay the view.
 
-Update the `ORDER_OVERVIEW` table and set the value of `ITEM_COUNT` for all rows to 100.
+Update the `ORDER_VIEW_JDBC` table and set the value of `ITEM_COUNT` for all rows to 100.
 
 Call the `view/List orders (overview)` method using Postman. You should see that the item count is 100 for all orders.
 
@@ -74,7 +74,7 @@ You can validate your code by performing Postman requests and inspecting column 
 
 Now we've added prices to the order items, we want to include the total price of the order in the view.
 Update the `JDBCOrderView` logic that handles the OrderItemAdded event and include the total price of the order.
-Please note the database creation script in `src/main/resources/schema.sql` that creates the `ORDER_OVERVIEW` table.
+Please note the database creation script in `src/main/resources/schema.sql` that creates the `ORDER_VIEW_JDBC` table.
 
 ## Assignment 5: Add an OrderItemRemoved event.
 
