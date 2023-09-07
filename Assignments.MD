@@ -16,7 +16,7 @@ A **_repository_** stores aggregates, typically in a database.
 
 With event sourcing aggregates are stored (appending to) by storing their sequence of events.
 
-**_View models_** (aka Projections) provide a way to convert a stream of events into a structural representation, i.e. the current state.
+**_View models_** (aka Projections) provide a way to convert a stream of events into a structural representation, e.g. the current state.
 
 ## Project structure
 
