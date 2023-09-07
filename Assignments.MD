@@ -1,5 +1,23 @@
 # Workshop assignments
 
+## Definitions
+
+**_Event sourcing_** is a pattern in which state changes of an application are captured and stored in a sequence of event objects.
+
+An **_aggregate_** is a cluster of domain objects that can be treated as a single unit. An aggregate is unit of **consistency**.
+
+An **_event_** represents a fact that took place within your business. Such a fact is **irrefutable**.
+
+A **_command_** represents an intention to change the system state.
+
+A **_command handler_** validates an incoming command and rejects or processes it by loading the affected aggregate from the repository and attempting to apply the state change.
+
+A **_repository_** stores aggregates, typically in a database.
+
+With event sourcing aggregates are stored by storing their sequence of events.
+
+**_View models_** (aka Projections) provide a way to convert a stream of events into a structural representation, i.e. the current state.
+
 ## Project structure
 
 This projects holds a simple implementation of base classes required to implement event sourcing. These
