@@ -40,30 +40,30 @@ public class JDBCOrderView extends View {
     }
 
     public void handle(OrderCreated event) {
-        jdbcTemplate.update("INSERT INTO ORDER_OVERVIEW(ORDER_ID, ITEM_COUNT, ORDER_STATUS) VALUES(?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO ORDER_VIEW_JDBC(ORDER_ID, ITEM_COUNT, ORDER_STATUS) VALUES(?, ?, ?)",
                 event.getAggregateId(), 0, "CREATED");
     }
 
     public void handle(OrderItemAdded event) {
-        jdbcTemplate.update("UPDATE ORDER_OVERVIEW SET ITEM_COUNT = ITEM_COUNT + ? WHERE ORDER_ID = ?",
+        jdbcTemplate.update("UPDATE ORDER_VIEW_JDBC SET ITEM_COUNT = ITEM_COUNT + ? WHERE ORDER_ID = ?",
                 event.getQuantity(),
                 event.getAggregateId());
     }
 
     public void handle(OrderConfirmed event) {
-        jdbcTemplate.update("UPDATE ORDER_OVERVIEW SET ORDER_STATUS = ? WHERE ORDER_ID = ?",
+        jdbcTemplate.update("UPDATE ORDER_VIEW_JDBC SET ORDER_STATUS = ? WHERE ORDER_ID = ?",
                 "CONFIRMED",
                 event.getAggregateId());
     }
 
     public void handle(OrderCancelled event) {
-        jdbcTemplate.update("UPDATE ORDER_OVERVIEW SET ORDER_STATUS = ? WHERE ORDER_ID = ?",
+        jdbcTemplate.update("UPDATE ORDER_VIEW_JDBC SET ORDER_STATUS = ? WHERE ORDER_ID = ?",
                 "CANCELLED",
                 event.getAggregateId());
     }
 
     public List<OrderOverviewData> getOrders() {
-        return jdbcTemplate.query("SELECT * FROM ORDER_OVERVIEW", (rs, rowNum) -> OrderOverviewData.builder()
+        return jdbcTemplate.query("SELECT * FROM ORDER_VIEW_JDBC", (rs, rowNum) -> OrderOverviewData.builder()
                 .orderId(rs.getString("ORDER_ID"))
                 .itemCount(rs.getLong("ITEM_COUNT"))
                 .orderStatus(rs.getString("ORDER_STATUS"))
@@ -72,6 +72,6 @@ public class JDBCOrderView extends View {
 
     @Override
     protected void truncate() {
-        jdbcTemplate.update("TRUNCATE TABLE ORDER_OVERVIEW");
+        jdbcTemplate.update("TRUNCATE TABLE ORDER_VIEW_JDBC");
     }
 }

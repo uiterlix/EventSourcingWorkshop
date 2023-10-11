@@ -37,13 +37,14 @@ A REST controller is provided that handles the commands. See `OrderController.ja
 The controller uses the command handler to handle the commands.
 
 A view is a projection of the state of an aggregate. See `JDBCOrderView.java` as an example. It subscribes to events and updates a
-materialized view. To illustrate you can create different views using different persistence mechanisms, there is also a `JPAOrderView.java`
-
+materialized view. To illustrate you can create different views using different persistence mechanisms, there is also a `JPAOrderView.java`.
+In the assignments below you only need to change the JDBC views. However, you are free to change the JPA views as well.
 
 
 ## Assignment 1: Getting started 
 
-Run the application, inspect the h2 database and try the REST calls provided with the postman collection.
+Run the application, inspect the h2 database (the URL to access the database can be found in
+[README.md](/#inspecting-the-database)) and try the REST calls provided with the postman collection.
 
 ## Assignment 2: Replay the JDBCOrderView
 
@@ -54,7 +55,7 @@ view.
 
 Let's try this by corrupting our database table first and then replay the view.
 
-Update the `ORDER_OVERVIEW` table and set the value of `ITEM_COUNT` for all rows to 100.
+Update the `ORDER_VIEW_JDBC` table and set the value of `ITEM_COUNT` for all rows to 100.
 
 Call the `view/List orders (overview)` method using Postman. You should see that the item count is 100 for all orders.
 
@@ -64,14 +65,16 @@ If you now call the `view/List orders (overview)` method using Postman, you shou
 
 ## Assignment 3: Extend the OrderItemAdded event
 
-Extend the OrderItemAdded event with the price. 
-The price should be a `BigDecimal` and should be stored in the event.
+Extend classes related to the event that adds order items with a price.
+The Java type of a price should be a `BigDecimal` and should be stored in the event.
+
+You can validate your code by performing Postman requests and inspecting column `EVENT_DATA` in table `JOURNAL`.
 
 ## Assignment 4: Update the JDBCOrderView
 
-Now we've added the price to the order, we want to include the total price of the order in the view.
+Now we've added prices to the order items, we want to include the total price of the order in the view.
 Update the `JDBCOrderView` logic that handles the OrderItemAdded event and include the total price of the order.
-Please note the database creation script in `src/main/resources/schema.sql` that creates the `ORDER_OVERVIEW` table.
+Please note the database creation script in `src/main/resources/schema.sql` that creates the `ORDER_VIEW_JDBC` table.
 
 ## Assignment 5: Add an OrderItemRemoved event.
 

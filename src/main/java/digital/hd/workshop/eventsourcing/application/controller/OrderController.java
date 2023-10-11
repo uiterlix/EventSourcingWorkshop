@@ -21,13 +21,13 @@ public class OrderController {
     @PostMapping("{id}")
     public void createOrder(@PathVariable("id") String id,
                             @RequestBody OrderDetails orderDetails) {
-        commandHandler.createOrder("web-user", id, orderDetails.getTableNumber());
+        commandHandler.createOrder("web-user", id, orderDetails.tableNumber());
     }
 
     @PostMapping("{id}/add-item")
     public void addItemToOrder(@PathVariable("id") String id,
                                @RequestBody LineItemDetails orderItem) {
-        commandHandler.addItemToOrder("web-user", id, orderItem.getProductId(), orderItem.getQuantity());
+        commandHandler.addItemToOrder("web-user", id, orderItem.productId(), orderItem.quantity());
     }
 
     @PostMapping("{id}/confirm")

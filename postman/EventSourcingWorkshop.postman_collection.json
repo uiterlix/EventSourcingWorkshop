@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+							"raw": "{\n    \"tableNumber\": \"outdoors 1\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8123/order-view",
@@ -54,7 +54,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+							"raw": "{\n    \"tableNumber\": \"outdoors 1\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8123/order-view/replay",
@@ -89,7 +89,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tableNumber\": \"oudoors 1\"\n}"
+							"raw": "{\n    \"tableNumber\": \"outdoors 1\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8123/order/100",
